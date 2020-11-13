@@ -52,6 +52,12 @@ class OracleUtils:
 
         return result
 
+    def call_proc(self, proc: str):
+        """执行不带参数的存储过程，"""
+        proc = proc.strip()
+        self.cur.callproc(proc)
+        self.commit()
+
     def commit(self):
         self.conn.commit()
 
