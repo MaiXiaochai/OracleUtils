@@ -58,6 +58,14 @@ class OracleUtils:
         self.cur.callproc(proc)
         self.commit()
 
+    def has_table(self, table_name):
+        """
+            该用户下是否存在表table_name
+        """
+        sql = f"select count(*) from user_tables where table_name =upper('{table_name}')"
+
+        return self.fetchone(sql)[0] == 1
+
     def commit(self):
         self.conn.commit()
 
