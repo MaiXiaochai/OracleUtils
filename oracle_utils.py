@@ -20,7 +20,7 @@ class OracleUtils:
                  service_name: str = None,
                  sid: str = None):
 
-        dns = ''
+        dns = None
         if service_name:
             dns = makedsn(host, port, service_name=service_name)
 
