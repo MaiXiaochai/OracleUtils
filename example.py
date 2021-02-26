@@ -13,11 +13,11 @@ from oracle_utils import OracleUtils
 
 def main():
     db_cfg = {
-        'username': 'flxuser',
-        'password': 'flxuser',
-        'host': '192.168.158.219',
+        'username': 'maixiaochai',
+        'password': 'maixiaochai',
+        'host': '192.168.158.1',
         'port': 1521,
-        'service_name': 'bfcecdw'
+        'service_name': 'maixiaochai'
     }
 
     db = OracleUtils(**db_cfg)
