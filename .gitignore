@@ -163,3 +163,6 @@ speed-measure-plugin*.json
 
 # scripts
 **/scripts
+Pipfile
+*Pipfile
+*.lock
