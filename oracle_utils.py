@@ -66,6 +66,14 @@ class OracleUtils:
 
         return self.fetchone(sql)[0] == 1
 
+    def has_data(self, table_name) -> bool:
+        """
+            表 table_name是否有数据
+        """
+        sql = f"select count(*) from {table_name} where rownum < 10"
+
+        return self.fetchone(sql)[0] > 0
+
     def commit(self):
         self.conn.commit()
 
