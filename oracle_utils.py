@@ -13,6 +13,7 @@ from cx_Oracle import makedsn, connect
 
 class OracleUtils:
     _has_obj_sql = "select count(*) from user_objects where object_name ='{}'"
+    _has_table_sql = "select count(*) from user_tables where table_name =upper('{}')"
 
     def __init__(self,
                  username: str,
@@ -60,11 +61,11 @@ class OracleUtils:
         self.cur.callproc(proc)
         self.commit()
 
-    def has_table(self, table_name):
+    def has_table(self, table_name: str) -> bool:
         """
             该用户下是否存在表table_name
         """
-        sql = f"select count(*) from user_tables where table_name =upper('{table_name}')"
+        sql = self._has_table_sql.format(table_name.upper())
 
         return self.fetchone(sql)[0] == 1
 
