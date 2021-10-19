@@ -12,6 +12,8 @@ from cx_Oracle import makedsn, connect
 
 
 class OracleUtils:
+    _has_obj_sql = "select count(*) from user_objects where object_name ='{}'"
+
     def __init__(self,
                  username: str,
                  password: str,
@@ -72,6 +74,13 @@ class OracleUtils:
         """
         sql = f"select count(*) from {table_name} where rownum < 10"
 
+        return self.fetchone(sql)[0] > 0
+
+    def has_object(self, object_name: str) -> bool:
+        """
+            判断对象是否存在
+        """
+        sql = self._has_obj_sql.format(object_name.upper())
         return self.fetchone(sql)[0] > 0
 
     def commit(self):
